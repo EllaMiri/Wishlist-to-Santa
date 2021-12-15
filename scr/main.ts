@@ -1,26 +1,26 @@
 interface WishList {
     name: string;
     list: string[];
-    isNaughty: boolean;
+    behaviour: 'kind' | 'naughty' | 'neutral';
 }
 
 const santasWishlists: WishList[] = [
     {
     list: ['Tesla', 'PS5'],
     name: 'Nathaniel',
-    isNaughty: true
+    behaviour: 'naughty',
     },
 
     {
     list: ['Presentkort'],
     name: 'Ella',
-    isNaughty: false
+    behaviour: 'kind',
     },
 
     {
     list: ['Ponny'],
     name: 'Alva',
-    isNaughty: false
+    behaviour: 'neutral',
     }
 ]
 
@@ -48,6 +48,13 @@ function createSingleWishlistElement(wishlist: WishList) {
     
     const h3 = document.createElement('h3')
     h3.innerHTML = wishlist.name;
+    let emoji;
+    switch(wishlist.behaviour) {
+        case 'kind': emoji = '😇'; break;
+        case 'naughty': emoji = '🤬'; break;
+        case 'neutral': emoji = '😊'; break;
+    }
+    h3.innerText += ' ' + emoji;
     div.append(h3)
     
     const ul = document.createElement('ul')
